@@ -1,0 +1,74 @@
+166c166
+< #LoadModule userdir_module libexec/apache2/mod_userdir.so
+---
+> LoadModule userdir_module libexec/apache2/mod_userdir.so
+168c168
+< #LoadModule rewrite_module libexec/apache2/mod_rewrite.so
+---
+> LoadModule rewrite_module libexec/apache2/mod_rewrite.so
+169a170
+> LoadModule php5_module    /usr/local/opt/php56/libexec/apache2/libphp5.so
+236,263c237,240
+< DocumentRoot "/Library/WebServer/Documents"
+< <Directory "/Library/WebServer/Documents">
+<     #
+<     # Possible values for the Options directive are "None", "All",
+<     # or any combination of:
+<     #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+<     #
+<     # Note that "MultiViews" must be named *explicitly* --- "Options All"
+<     # doesn't give it to you.
+<     #
+<     # The Options directive is both complicated and important.  Please see
+<     # http://httpd.apache.org/docs/2.4/mod/core.html#options
+<     # for more information.
+<     #
+<     Options FollowSymLinks Multiviews
+<     MultiviewsMatch Any
+< 
+<     #
+<     # AllowOverride controls what directives may be placed in .htaccess files.
+<     # It can be "All", "None", or any combination of the keywords:
+<     #   AllowOverride FileInfo AuthConfig Limit
+<     #
+<     AllowOverride None
+< 
+<     #
+<     # Controls who can get stuff from this server.
+<     #
+<     Require all granted
+---
+> <Directory /Users/boro/dev/www/>
+>         Options Indexes FollowSymLinks
+>         AllowOverride All
+>         Require all granted
+265a243,267
+> <VirtualHost *:80>
+>         ServerAdmin webmaster@localhost
+>         ServerName localhost
+> 
+>         DocumentRoot /Users/boro/dev/www/
+> </VirtualHost>
+> 
+> <VirtualHost *:80>
+>         ServerAdmin webmaster@localhost
+>         ServerName sugar1.com
+>         DocumentRoot /Users/boro/dev/www/sugar1.com/
+> </VirtualHost>
+> 
+> <VirtualHost *:80>
+>         ServerAdmin webmaster@localhost
+>         ServerName sugar2.com
+>         DocumentRoot /Users/boro/dev/www/sugar2.com/
+> </VirtualHost>
+> 
+> <VirtualHost *:80>
+>         ServerAdmin webmaster@localhost
+>         ServerName sugar3.com
+>         DocumentRoot /Users/boro/dev/www/sugar3.com/
+> </VirtualHost>
+> 
+493c495
+< #Include /private/etc/apache2/extra/httpd-userdir.conf
+---
+> Include /private/etc/apache2/extra/httpd-userdir.conf

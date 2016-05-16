@@ -1,0 +1,5 @@
+#!/bin/bash
+killall -9 memcached
+kill -9 `ps auxw | grep elasticsearch | grep java | awk '{print $2;}'`
+mysql.server stop
+sudo apachectl stop

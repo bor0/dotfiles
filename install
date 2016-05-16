@@ -1,0 +1,56 @@
+#!/usr/bin/python
+from subprocess import call
+import os
+
+root_dir = 'root'
+root_dir_n = len(root_dir) + 1
+home_dir = os.path.expanduser('~/')
+overwrite_all = False
+
+for root, dirs, files in os.walk(root_dir):
+    folder = home_dir + root[root_dir_n:]
+    print "Creating folder '" + folder + "'..."
+
+    try:
+        os.makedirs(folder)
+    except:
+        pass
+
+    for f in files:
+        f = root + '/' + f
+
+        file_src_abs = os.path.abspath(f)
+        file_src_rel = f[root_dir_n:]
+        file_dst = home_dir + file_src_rel
+
+        print "Linking file '" + file_src_rel + "'..."
+
+        if os.path.lexists(file_dst):
+            if overwrite_all:
+                os.unlink(file_dst)
+            else:
+                option = ''
+                while option.lower() != 'y' and option.lower() != 'n' and option.lower() != 'a':
+                    option = raw_input("File '" + file_src_rel + "' already exists. Continue? [Yes/No/yesAll] ")
+
+                if option.lower() == 'n':
+                    exit()
+                elif option.lower() == 'a':
+                    overwrite_all = True
+
+                os.unlink(file_dst)
+
+        os.symlink(file_src_abs, file_dst)
+
+print "Attempting to patch /etc/apache2/httpd.conf using sudo..."
+call('sudo patch /etc/apache2/httpd.conf -i httpd.patch', shell = True)
+
+print "Installation complete.  Perform these steps manually:"
+
+print "\n1. Install brew by doing:"
+print "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+
+print "\n2. Run 'cat brew.list | xargs brew install' to install brew packages."
+print "Additionally, restart the terminal session for bash profile settings to apply."
+
+print "\n3. Add '127.0.0.1       sugar1.com sugar2.com sugar3.com' to /etc/hosts"

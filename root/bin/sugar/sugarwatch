@@ -1,0 +1,71 @@
+#!/usr/bin/python
+from subprocess import Popen, PIPE
+import sys, os, re
+import shutil, shlex
+
+def parse_sugarversion(filename):
+    L = {}
+
+    f = open(filename, 'r')
+    f = f.read()
+
+    p = re.compile(ur'\$sugar_(version|flavor)( *)=( *)\'(.*)?\';')
+    p = re.findall(p, f)
+
+    for i in p:
+        L[i[0]] = i[3].lower()
+
+    return L
+
+def handle_build(sugarversion, filename, source_dir, target_dir):
+    filenamerel = filename.replace(source_dir, '')
+
+    if filenamerel.startswith('sidecar/'):
+        buildstr = "node_modules/gulp/bin/gulp.js build"
+
+        args = shlex.split(buildstr)
+
+        Popen(args, cwd = source_dir + '/sidecar/', stdout = open(os.devnull, 'wb'))
+
+        # TODO: Copy minified files to target_dir
+    else:
+        buildstr = "php build.php --flav=%s --ver=%s --dir=%s --build_dir=%s"
+        buildstr = buildstr % (sugarversion['flavor'], sugarversion['version'], filename, target_dir)
+
+        args = shlex.split(buildstr)
+
+        Popen(args, cwd = source_dir + '/../build/rome/', stdout = open(os.devnull, 'wb'))
+
+        # actual file produced by build script
+        filename = target_dir + '/' + sugarversion['flavor'] + '/sugarcrm/' + filenamerel
+
+        if os.path.exists(filename):
+            print('rename', filename, target_dir + '/' + filenamerel)
+            os.rename(filename, target_dir + '/' + filenamerel)
+
+if len(sys.argv) != 3:
+    print "usage: %s <source dir> <target dir>" % sys.argv[0]
+    quit()
+
+(source_dir, target_dir) = (sys.argv[1], sys.argv[2])
+
+sugarversion = parse_sugarversion(target_dir + '/sugar_version.php');
+if 'version' not in sugarversion or 'flavor' not in sugarversion:
+    print "sugar_version.php does not contain enough data"
+    quit()
+
+p = Popen(["fswatch", source_dir], stdout=PIPE, bufsize=1)
+
+with p.stdout:
+    for filename in iter(p.stdout.readline, b""):
+        filename = filename.replace("\n", "")
+        filenamedst = target_dir + "/" + filename.replace(source_dir, "")
+
+        if not os.path.isfile(filename):
+            continue
+        elif os.path.exists(filename): # it is a file
+            handle_build(sugarversion, filename, source_dir, target_dir)
+        elif os.path.exists(filenamedst): # it is a file but doesn't exist
+            os.unlink(filenamedst)
+
+p.wait() # wait for the subprocess to exit

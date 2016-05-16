@@ -1,0 +1,5 @@
+#!/bin/bash
+if [[ `pwd` == $DEV_BASE/sugar* ]];
+then
+    sudo rm -rf * .htaccess
+fi

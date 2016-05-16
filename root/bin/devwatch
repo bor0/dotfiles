@@ -1,0 +1,26 @@
+#!/usr/bin/python
+from subprocess import Popen, PIPE
+import sys, os
+import shutil
+
+if len(sys.argv) != 3:
+    print "usage: %s <source dir> <target dir>" % sys.argv[0]
+    quit()
+
+(source_dir, target_dir) = (sys.argv[1], sys.argv[2])
+
+p = Popen(["fswatch", source_dir], stdout=PIPE, bufsize=1)
+
+with p.stdout:
+    for filename in iter(p.stdout.readline, b""):
+        filename = filename.replace("\n", "")
+        filenamedst = target_dir + "/" + filename.replace(source_dir, "")
+
+        if not os.path.isfile(filename):
+            continue
+        elif os.path.exists(filename): # it is a file
+            shutil.copy2(filename, filenamedst)
+        elif os.path.exists(filenamedst): # it is a file but doesn't exist
+            os.unlink(filenamedst)
+
+p.wait() # wait for the subprocess to exit

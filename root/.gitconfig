@@ -1,0 +1,7 @@
+[push]
+        default = simple
+[user]
+        email = bsitnikovski@sugarcrm.com
+        name = Boro Sitnikovski
+[core]
+        editor = vim

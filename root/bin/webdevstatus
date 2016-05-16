@@ -1,0 +1,2 @@
+#!/bin/bash
+ps auxw|grep -i "\(mysqld\|elasticsearch\|httpd\|memcached\)"

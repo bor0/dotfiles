@@ -1,0 +1,22 @@
+#!/usr/bin/python
+import os
+import sys
+from subprocess import call, Popen, PIPE, STDOUT
+
+if not os.geteuid() == 0:
+    sys.exit('You need administrator access to run this tool... exiting!')
+
+if len(sys.argv) != 4:
+    print 'usage: %s <local port> <remote ip> <remote port>' % sys.argv[0]
+    quit()
+
+print 'Enabling ssh...'
+call('systemsetup -setremotelogin on', shell = True)
+
+print 'Launching ssh to listen...'
+try:
+    call('ssh -L 0.0.0.0:%s:%s:%s -N 127.0.0.1 -l boro' % (sys.argv[1], sys.argv[2], sys.argv[3]), shell = True)
+except:
+    print 'Disabling ssh...'
+    p = Popen(['systemsetup -setremotelogin off'], shell = True, stdin = PIPE, stdout = PIPE, stderr = PIPE)
+    stdout_data = p.communicate(input='yes')[0]

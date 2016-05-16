@@ -1,0 +1,90 @@
+#!/usr/bin/env php
+<?php
+function generate_sugarconfig($hostName, $demoData) {
+    $sugar_config_si = array(
+        'default_currency_iso4217' => 'USD',
+        'default_currency_name' => 'US Dollars',
+        'default_currency_significant_digits' => 2,
+        'default_currency_symbol' => '$',
+        'default_date_format' => 'm/d/Y',
+        'default_decimal_seperator' => '.',
+        'default_export_charset' => 'UTF-8',
+        'default_language' => 'en_us',
+        'default_locale_name_format' => 's f l',
+        'default_number_grouping_seperator'    => ',',
+        'default_time_format' => 'h:ia',
+        'export_delimiter' => ',',
+        'setup_db_admin_password' => 'asdf',
+        'setup_db_admin_user_name' => 'root',
+        'setup_db_create_database' => '1',
+        'setup_db_drop_tables' => true,
+        'setup_db_sugarsales_password' => 'root',
+        'setup_db_sugarsales_password_retype' => 'root',
+        'setup_db_sugarsales_user' => 'root',
+        'setup_db_type' => 'mysql',
+        'setup_db_host_name' => "{$hostName}",
+        'setup_db_port_num' => '3306',
+        'setup_db_create_sugarsales_user' => 0,
+        'setup_db_database_name' => preg_replace("/[^A-Za-z0-9]/", '', $hostName),
+        'setup_db_pop_demo_data' => 0,
+        'demoData' => $demoData,
+        'setup_license_key' => getenv('SUGAR_LICENSE_KEY'),
+        'setup_site_admin_user_name'=> 'admin',
+        'setup_site_admin_password' => 'asdf',
+        'setup_site_url' => "http://{$hostName}",
+        'setup_system_name' => 'SugarCRM',
+        'setup_fts_type' => 'Elastic',
+        'setup_fts_host' => 'localhost',
+        'setup_fts_port' => '9200',
+        'developerMode' => true,
+    );
+
+    return "<?php\n" . '$sugar_config_si = ' . var_export($sugar_config_si, true) . ';';
+}
+
+function prepare_installation($hostName, $demoData) {
+    file_put_contents('config_si.php', generate_sugarconfig($hostName, $demoData));
+
+    exec('sugarchmod');
+    exec('sudo sed -i "" "s/5.5.unsupported/7.5.unsupported/" include/utils.php');
+    exec('sudo sed -i "" "s/5.6.unsupported/7.5.unsupported/" include/utils.php');
+//    exec('cp sidecar/minified/sidecar.js sidecar/minified/sidecar.min.js');
+}
+
+function launch_silentinstall($hostName) {
+    $ch = curl_init("http://{$hostName}/install.php?goto=SilentInstall&cli=true");
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_VERBOSE, true);
+
+    return curl_exec($ch);
+}
+
+function clear_cache_after_install() {
+    exec('sudo rm -rf cache && sudo mkdir cache');
+    exec('sugarchmod');
+}
+
+if (count($argv) < 2) {
+    echo "usage:\n\t{$argv[0]} <hostname> [demo data]\n";
+    exit();
+}
+
+$demoData = !empty($argv[2]) ? 'yes' : 'no';
+
+if (!file_exists('sugar_version.php')) {
+    echo "CWD doesn't look like a SugarCRM folder...\n";
+    exit();
+}
+
+echo "[INFO] Preparing installation...\n";
+prepare_installation($argv[1], $demoData);
+
+echo "[INFO] Launching web silent install...\n";
+$result = launch_silentinstall($argv[1]);
+
+echo "[INFO] Clearing cache after install...\n";
+clear_cache_after_install();
+
+echo $result . "\n";
