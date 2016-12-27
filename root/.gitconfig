@@ -1,7 +1,7 @@
 [push]
         default = simple
 [user]
-        email = bsitnikovski@sugarcrm.com
+        email = boro.sitnikovski@automattic.com
         name = Boro Sitnikovski
 [core]
         editor = vim

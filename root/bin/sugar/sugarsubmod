@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ -z "$1" ];
-then
-    git submodule update --init --recursive
-else
-    git submodule update --init --rebase --recursive
-fi

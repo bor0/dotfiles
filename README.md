@@ -1,6 +1,6 @@
 Boro's Dev Environment
 ======================
-Hi. This is the dev environment I'm using for developing SugarCRM. To get started, just run `./install.py`.
+Hi. This is the dev environment I'm using for developing with Automattic. To get started, just run `./install.py`.
 
 Folders structure
 -----------------
@@ -13,15 +13,16 @@ This project contains various configuration files and development tools.
 
 1. `.bash_profile` contains some bash settings that I find useful.
 2. `.gitconfig` contains my own configuration for Git.
-3. `.my.cnf` (`.mysql_init`) contains config file for MySQL, used by some bin files.
+3. `.tmux.conf` contains config file for tmux.
 4. `.vim` and `.vimrc` contains some settings for Vim, the main editor I use.
-5. `bin/` and `bin/sugar/`, check the README of those folders.
 
 brew.list
 ---------
 Use `brew leaves > brew.list` to generate this list with the latest packages.
 Alternatively, run `cat brew.list | xargs brew install` to install them.
 
-Scripts are used with Mac OS X v10.11.5.
+For enabling brew bash, run: `sudo -s echo /usr/local/bin/bash >> /etc/shells`, and then `chsh -s /usr/local/bin/bash`.
+
+Scripts are used with Mac OS X v10.12.2.
 
 Boro Sitnikovski

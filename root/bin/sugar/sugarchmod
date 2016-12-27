@@ -1,6 +1,0 @@
-#!/bin/bash
-if [[ `pwd` == $DEV_BASE/sugar* ]];
-then
-    sudo chmod -R 777 * .htaccess >/dev/null 2>/dev/null
-    sudo chown -R _www:staff *
-fi

@@ -1,21 +1,16 @@
-apr-util
 automake
 bash
 homebrew/versions/bash-completion2
 homebrew/php/composer
-homebrew/versions/elasticsearch17
 fswatch
 git
+homebrew/apache/httpd24
 imap-uw
-librsvg
-libtool
 midnight-commander
 mysql
-homebrew/versions/node5
-homebrew/php/php56-mcrypt
-homebrew/php/php56-memcached
-homebrew/php/php56-xdebug
-homebrew/php/phpunit
-homebrew/boneyard/vpnc
+node
+php71 --with-httpd24
+php71-mcrypt
+php71-xdebug
+tmux
 wget
-homebrew/dupes/zlib

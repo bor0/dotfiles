@@ -42,9 +42,6 @@ for root, dirs, files in os.walk(root_dir):
 
         os.symlink(file_src_abs, file_dst)
 
-print "Attempting to patch /etc/apache2/httpd.conf using sudo..."
-call('sudo patch /etc/apache2/httpd.conf -i httpd.patch', shell = True)
-
 print "Installation complete.  Perform these steps manually:"
 
 print "\n1. Install brew by doing:"
@@ -52,5 +49,3 @@ print "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebre
 
 print "\n2. Run 'cat brew.list | xargs brew install' to install brew packages."
 print "Additionally, restart the terminal session for bash profile settings to apply."
-
-print "\n3. Add '127.0.0.1       sugar1.com sugar2.com sugar3.com' to /etc/hosts"
