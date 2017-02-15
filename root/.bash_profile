@@ -14,3 +14,5 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export GREP_OPTIONS='--color=auto'
 export COMPOSER_DISABLE_XDEBUG_WARN=1
 alias phpd="php -dxdebug.remote_autostart=On -dxdebug.idekey=123"
+
+HISTFILESIZE=10000000

@@ -12,5 +12,4 @@ node
 php71 --with-httpd24
 php71-mcrypt
 php71-xdebug
-tmux
 wget
