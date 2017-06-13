@@ -61,7 +61,7 @@ if !exists("g:vdebug_keymap")
 endif
 
 if !exists("g:vdebug_features")
-    let g:vdebug_features = { 'max_children': 128 }
+    let g:vdebug_features = { 'max_children': 2048 }
 endif
 
 if !exists("g:vdebug_leader_key")
