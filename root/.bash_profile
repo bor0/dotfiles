@@ -17,4 +17,4 @@ alias phpd="php -dxdebug.remote_autostart=On -dxdebug.idekey=123"
 
 HISTFILESIZE=10000000
 
-source .bash_profile_private
+source ~/.bash_profile_private
