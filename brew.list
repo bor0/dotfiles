@@ -6,7 +6,7 @@ imap-uw
 midnight-commander
 mysql
 node
-homebrew/php/php71 --with-httpd24
+homebrew/php/php71 --with-httpd
 homebrew/php/php71-mcrypt
 homebrew/php/php71-xdebug
 homebrew/php/phpunit@5.7
