@@ -47,5 +47,8 @@ print "Installation complete.  Perform these steps manually:"
 print "\n1. Install brew by doing:"
 print "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
 
-print "\n2. Run 'cat brew.list | xargs brew install' to install brew packages."
+print "\n2. Install wp cli by doing:"
+print "curl -o ~/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x ~/bin/wp"
+
+print "\n3. Run 'cat brew.list | xargs brew install' to install brew packages."
 print "Additionally, restart the terminal session for bash profile settings to apply."
