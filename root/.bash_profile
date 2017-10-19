@@ -11,7 +11,7 @@ export PS1='\u@\H:\w$ '
 export TERM="xterm-color" 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-export GREP_OPTIONS='--color=auto --exclude=*.un~'
+export GREP_OPTIONS='--color=auto'
 export COMPOSER_DISABLE_XDEBUG_WARN=1
 alias phpd="php -dxdebug.remote_autostart=On -dxdebug.idekey=123"
 
