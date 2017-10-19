@@ -5,3 +5,4 @@
         name = Boro Sitnikovski
 [core]
         editor = vim
+	excludesfile = ~/.gitignore_global
