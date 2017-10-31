@@ -12,3 +12,4 @@ homebrew/php/php71-xdebug
 homebrew/php/phpunit@5.7
 wget
 inetutils
+vim
