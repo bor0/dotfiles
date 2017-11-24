@@ -13,3 +13,4 @@ homebrew/php/phpunit@5.7
 wget
 inetutils
 vim
+socat

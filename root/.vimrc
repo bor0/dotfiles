@@ -18,6 +18,9 @@ set hlsearch
 " Search as you type
 set incsearch
 
+" Backspace/delete will work in insert mode
+set backspace=indent,eol,start
+
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
