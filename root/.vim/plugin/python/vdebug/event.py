@@ -256,7 +256,7 @@ class WatchWindowContextChangeEvent(Event):
 
     def __determine_context_id(self,context_names,context_name):
         found_id = -1
-        for id in context_names.keys():
+        for id in list(context_names.keys()):
             name = context_names[id]
             vdebug.log.Log(name +", "+context_name)
             if name == context_name:

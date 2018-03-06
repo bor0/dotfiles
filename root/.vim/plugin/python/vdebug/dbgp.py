@@ -135,7 +135,7 @@ class EvalResponse(ContextGetResponse):
     def __init__(self,response,cmd,cmd_args,api):
         try:
             ContextGetResponse.__init__(self,response,cmd,cmd_args,api)
-        except DBGPError, e:
+        except DBGPError as e:
             if int(e.args[1]) == 206:
                 raise EvalError()
             else:
@@ -151,7 +151,7 @@ class EvalResponse(ContextGetResponse):
     def get_code(self):
         cmd = self.get_cmd_args()
         parts = cmd.split('-- ')
-        return base64.decodestring(parts[1])
+        return base64.decodestring(bytes(parts[1], 'utf-8')).decode()
 
 
 class BreakpointSetResponse(Response):
@@ -290,7 +290,7 @@ class Api:
     def eval(self,code):
         """Tell the debugger to start or resume
         execution."""
-        code_enc = base64.encodestring(code)
+        code_enc = base64.encodestring(bytes(code, 'utf-8')).decode()
         args = '-- %s' % code_enc
 
         """ The python engine incorrectly requires length.
@@ -418,7 +418,7 @@ class Connection:
     def open(self):
         """Listen for a connection from the debugger. Listening for the actual
         connection is handled by self.listen()."""
-        print 'Waiting for a connection (Ctrl-C to cancel, this message will self-destruct in ',self.timeout,' seconds...)'
+        print('Waiting for a connection (Ctrl-C to cancel, this message will self-destruct in ',self.timeout,' seconds...)')
         serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             serv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -470,7 +470,7 @@ class Connection:
         """Get the length of the proceeding message."""
         length = ''
         while 1:
-            c = self.sock.recv(1)
+            c = self.sock.recv(1).decode()
             if c == '':
                 self.close()
                 raise EOFError('Socket Closed')
@@ -482,7 +482,7 @@ class Connection:
     def __recv_null(self):
         """Receive a null byte."""
         while 1:
-            c = self.sock.recv(1)
+            c = self.sock.recv(1).decode()
             if c == '':
                 self.close()
                 raise EOFError('Socket Closed')
@@ -496,7 +496,7 @@ class Connection:
         """
         body = ''
         while to_recv > 0:
-            buf = self.sock.recv(to_recv)
+            buf = self.sock.recv(to_recv).decode()
             if buf == '':
                 self.close()
                 raise EOFError('Socket Closed')
@@ -519,7 +519,7 @@ class Connection:
 
         cmd -- command to send
         """
-        self.sock.send(cmd + '\0')
+        self.sock.send(bytes(cmd + '\0', 'utf-8'))
 
 class ContextProperty:
 
