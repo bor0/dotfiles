@@ -589,7 +589,7 @@ class ContextGetResponseRenderer(ResponseRenderer):
     def __render_property(self,p,next_p,last = False,indent = 0):
         line = "%(indent)s %(marker)s %(name)s = (%(type)s)%(value)s" \
                 %{'indent':"".rjust((p.depth * 2)+indent),\
-                'marker':self.__get_marker(p),'name':p.display_name.encode('latin1'),\
+                'marker':self.__get_marker(p),'name':p.display_name,\
                 'type':p.type_and_size(),'value': " " + p.value}
         line = line.rstrip() + "\n"
 

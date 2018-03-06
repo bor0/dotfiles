@@ -553,7 +553,7 @@ class ContextProperty:
                 if node.text is None:
                     self.value = ""
                 else:
-                    self.value = base64.decodestring(node.text)
+                    self.value = base64.decodestring(bytes(node.text, 'utf-8')).decode()
             elif not self.is_uninitialized() \
                     and not self.has_children:
                 self.value = node.text
@@ -586,7 +586,7 @@ class ContextProperty:
         n = node.find('%s%s' %(self.ns, name))
         if n is not None and n.text is not None:
             if n.get('encoding') == 'base64':
-                val = base64.decodestring(n.text)
+                val = base64.decodestring(bytes(n.text, 'utf-8')).decode()
             else:
                 val = n.text
         else:
