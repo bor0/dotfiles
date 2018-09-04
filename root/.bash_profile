@@ -15,6 +15,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export GREP_OPTIONS='--color=auto --exclude-dir=node_modules'
 export COMPOSER_DISABLE_XDEBUG_WARN=1
 alias phpd="php -dxdebug.remote_autostart=On -dxdebug.idekey=123"
+alias vi="vim"
 
 HISTFILESIZE=10000000
 
