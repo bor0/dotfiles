@@ -1,9 +1,9 @@
 bash-completion@2
 composer
 git
+httpd
 midnight-commander
 mysql
 node
-httpd
-php
+php@7.2
 vim

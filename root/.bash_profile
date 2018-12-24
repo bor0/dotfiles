@@ -1,4 +1,4 @@
-export PATH=$(brew --prefix php72)/bin:$PATH
+export PATH=$(brew --prefix php@7.2)/bin:$PATH
 export PATH=$HOME/bin:/usr/local/sbin:$PATH
 export PATH=$(brew --prefix vim)/bin:$PATH
 
