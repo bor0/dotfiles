@@ -1,9 +1,10 @@
+bash
 bash-completion
 composer
 git
 httpd
 midnight-commander
 mysql
-nvm
-php@7.2
+node@10
+php@7.4
 vim
