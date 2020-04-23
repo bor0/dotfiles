@@ -1,3 +1,6 @@
+export PATH=$HOME/bin:/usr/local/sbin:$PATH
+
+# macOS...
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Get this path from $(brew --prefix php) but avoid using the command directly because it slows down
