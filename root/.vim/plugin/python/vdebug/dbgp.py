@@ -151,7 +151,7 @@ class EvalResponse(ContextGetResponse):
     def get_code(self):
         cmd = self.get_cmd_args()
         parts = cmd.split('-- ')
-        return base64.decodestring(bytes(parts[1], 'utf-8')).decode()
+        return base64.b64decode(bytes(parts[1], 'utf-8')).decode()
 
 
 class BreakpointSetResponse(Response):
@@ -290,7 +290,7 @@ class Api:
     def eval(self,code):
         """Tell the debugger to start or resume
         execution."""
-        code_enc = base64.encodestring(bytes(code, 'utf-8')).decode()
+        code_enc = base64.b64encode(bytes(code, 'utf-8')).decode()
         args = '-- %s' % code_enc
 
         """ The python engine incorrectly requires length.
@@ -553,7 +553,7 @@ class ContextProperty:
                 if node.text is None:
                     self.value = ""
                 else:
-                    self.value = base64.decodestring(bytes(node.text, 'utf-8')).decode()
+                    self.value = base64.b64decode(bytes(node.text, 'utf-8')).decode()
             elif not self.is_uninitialized() \
                     and not self.has_children:
                 self.value = node.text
@@ -586,7 +586,7 @@ class ContextProperty:
         n = node.find('%s%s' %(self.ns, name))
         if n is not None and n.text is not None:
             if n.get('encoding') == 'base64':
-                val = base64.decodestring(bytes(n.text, 'utf-8')).decode()
+                val = base64.b64decode(bytes(n.text, 'utf-8')).decode()
             else:
                 val = n.text
         else:

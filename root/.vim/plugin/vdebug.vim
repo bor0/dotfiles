@@ -83,7 +83,7 @@ let g:vdebug_keymap_defaults = {
 \}
 
 let g:vdebug_options_defaults = {
-\    "port" : 9000,
+\    "port" : 9003,
 \    "timeout" : 1000,
 \    "server" : '',
 \    "on_close" : 'stop',

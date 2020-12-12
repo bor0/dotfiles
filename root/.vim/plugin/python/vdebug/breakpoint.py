@@ -216,7 +216,7 @@ class ConditionalBreakpoint(LineBreakpoint):
 
     def get_cmd(self):
         cmd = LineBreakpoint.get_cmd(self)
-        cmd += " -- " + base64.encodestring(self.condition)
+        cmd += " -- " + base64.b64encode(self.condition)
         return cmd
 
 class WatchBreakpoint(Breakpoint):
@@ -228,7 +228,7 @@ class WatchBreakpoint(Breakpoint):
 
     def get_cmd(self):
         cmd = "-t " + self.type
-        cmd += " -- " + base64.encodestring(self.expr)
+        cmd += " -- " + base64.b64encode(self.expr)
         return cmd
 
 
