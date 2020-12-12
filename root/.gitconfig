@@ -1,11 +1,14 @@
 [push]
-        default = simple
+	default = simple
 [user]
-        email = buritomath@gmail.com
-        name = Boro Sitnikovski
+	email = buritomath@gmail.com
+	name = Boro Sitnikovski
 [core]
-        editor = vim
-        excludesfile = ~/.gitignore_global
-
+	editor = vim
+	excludesfile = ~/.gitignore_global
 [diff]
-        tool = vimdiff
+	tool = vimdiff
+[credential]
+	helper = osxkeychain
+[pull]
+	rebase = false

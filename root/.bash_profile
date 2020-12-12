@@ -23,6 +23,6 @@ alias vi="vim"
 
 HISTFILESIZE=10000000
 
-alias wr="php ~/dev/woocommerce-extension-release/woorelease.php $1"
+alias wr="php ~/dev/woorelease/woorelease.php $1"
 
 source ~/.bash_profile_private
