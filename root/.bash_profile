@@ -7,6 +7,8 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=/usr/local/opt/php/bin:$PATH
 export PATH=/usr/local/opt/vim/bin:$PATH #export PATH=$(brew --prefix vim)/bin:$PATH
 export PATH=/Applications/Racket\ v7.6/bin/:$PATH
+export PATH=/Applications/CoqIDE_8.12.2.app/Contents/Resources/bin/:$PATH
+export PATH=/Applications/CoqIDE_8.12.2.app/Contents/MacOS/:$PATH
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
