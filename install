@@ -51,4 +51,7 @@ print "\n2. Install wp cli by doing:"
 print "curl -o ~/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x ~/bin/wp"
 
 print "\n3. Run 'cat brew.list | xargs brew install' to install brew packages."
+
+print "\n4. Run coqtail.sh to install Coq plugin for Vim"
+
 print "Additionally, restart the terminal session for bash profile settings to apply."
