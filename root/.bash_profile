@@ -6,7 +6,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # Get this path from $(brew --prefix php) but avoid using the command directly because it slows down
 export PATH=/usr/local/opt/php/bin:$PATH
 export PATH=/usr/local/opt/vim/bin:$PATH #export PATH=$(brew --prefix vim)/bin:$PATH
-export PATH=/Applications/Racket\ v7.6/bin/:$PATH
+export PATH=/Applications/Racket\ v8.0/bin/:$PATH
 export PATH=/Applications/CoqIDE_8.12.2.app/Contents/Resources/bin/:$PATH
 export PATH=/Applications/CoqIDE_8.12.2.app/Contents/MacOS/:$PATH
 
@@ -28,3 +28,4 @@ HISTFILESIZE=10000000
 alias wr="php ~/dev/woorelease/woorelease.php $1"
 
 source ~/.bash_profile_private
+export PATH="/usr/local/opt/node@12/bin:$PATH"
