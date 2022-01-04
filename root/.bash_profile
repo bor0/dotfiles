@@ -4,7 +4,7 @@ export PATH=$HOME/bin:/usr/local/sbin:$PATH
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Get this path from $(brew --prefix php) but avoid using the command directly because it slows down
-export PATH=/usr/local/opt/php/bin:$PATH
+export PATH=/usr/local/opt/php@7.4/bin:$PATH
 export PATH=/usr/local/opt/vim/bin:$PATH #export PATH=$(brew --prefix vim)/bin:$PATH
 export PATH=/Applications/Racket\ v8.0/bin/:$PATH
 export PATH=/Applications/CoqIDE_8.12.2.app/Contents/Resources/bin/:$PATH

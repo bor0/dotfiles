@@ -1,7 +1,7 @@
 syntax on
 " set shiftwidth=4
 " set softtabstop=4
-set background=dark
+" set background=dark
 
 " Show bar for line number, etc
 set ruler
