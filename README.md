@@ -1,6 +1,6 @@
 Boro's Dev Environment
 ======================
-Hi. This is the dev environment I'm using for developing with Automattic. To get started, just run `./install.py`.
+Hi. This is the dev environment I'm using for developing with Automattic. To get started, just run `./install`.
 
 Folders structure
 -----------------

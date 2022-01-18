@@ -14,4 +14,9 @@ mysql
 node
 pandoc
 php
+rust
+stack
+subversion
+telnet
 vim
+z3

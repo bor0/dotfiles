@@ -54,4 +54,4 @@ print "\n3. Run 'cat brew.list | xargs brew install' to install brew packages."
 
 print "\n4. Run coqtail.sh to install Coq plugin for Vim"
 
-print "Additionally, restart the terminal session for bash profile settings to apply."
+print "Additionally, restart the terminal session for bash profile settings to apply, and run `chsh` to use `/bin/bash`."
