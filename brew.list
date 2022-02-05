@@ -4,6 +4,7 @@ composer
 dafny
 docker
 git
+haskell-stack
 hlint
 httpd
 idris
@@ -11,12 +12,14 @@ idris2
 jq
 midnight-commander
 mysql
+nasm
 node
+ocaml
 pandoc
 php@7.4
 rust
-stack
 subversion
+swi-prolog
 telnet
 vim
 z3
