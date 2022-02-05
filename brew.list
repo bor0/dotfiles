@@ -13,7 +13,7 @@ midnight-commander
 mysql
 node
 pandoc
-php
+php@7.4
 rust
 stack
 subversion
