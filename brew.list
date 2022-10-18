@@ -1,9 +1,10 @@
 bash
 bash-completion
-composer
 dafny
 docker
+ffmpeg
 git
+glpk
 haskell-stack
 hlint
 httpd
@@ -13,7 +14,8 @@ jq
 midnight-commander
 mysql
 nasm
-node
+node@12
+nvm
 ocaml
 pandoc
 php@7.4
