@@ -17,8 +17,9 @@ nasm
 node@12
 nvm
 ocaml
+openjdk@11
 pandoc
-php@7.4
+php
 rust
 subversion
 swi-prolog
