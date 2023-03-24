@@ -14,9 +14,9 @@ jq
 midnight-commander
 mysql
 nasm
-node
+node@18
 ocaml
-openjdk@11
+openjdk
 pandoc
 php
 python@3.10
