@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from subprocess import call
 import os
 
@@ -9,7 +9,7 @@ overwrite_all = False
 
 for root, dirs, files in os.walk(root_dir):
     folder = home_dir + root[root_dir_n:]
-    print "Creating folder '" + folder + "'..."
+    print("Creating folder '" + folder + "'...")
 
     try:
         os.makedirs(folder)
@@ -23,7 +23,7 @@ for root, dirs, files in os.walk(root_dir):
         file_src_rel = f[root_dir_n:]
         file_dst = home_dir + file_src_rel
 
-        print "Linking file '" + file_src_rel + "'..."
+        print("Linking file '" + file_src_rel + "'...")
 
         if os.path.lexists(file_dst):
             if overwrite_all:
@@ -31,7 +31,7 @@ for root, dirs, files in os.walk(root_dir):
             else:
                 option = ''
                 while option.lower() != 'y' and option.lower() != 'n' and option.lower() != 'a':
-                    option = raw_input("File '" + file_src_rel + "' already exists. Continue? [Yes/No/yesAll] ")
+                    option = input("File '" + file_src_rel + "' already exists. Continue? [Yes/No/yesAll] ")
 
                 if option.lower() == 'n':
                     exit()
@@ -42,16 +42,16 @@ for root, dirs, files in os.walk(root_dir):
 
         os.symlink(file_src_abs, file_dst)
 
-print "Installation complete.  Perform these steps manually:"
+print("Installation complete.  Perform these steps manually:")
 
-print "\n1. Install brew by doing:"
-print "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+print("\n1. Install brew by doing:")
+print("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"")
 
-print "\n2. Install wp cli by doing:"
-print "curl -o ~/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x ~/bin/wp"
+print("\n2. Install wp cli by doing:")
+print("curl -o ~/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x ~/bin/wp")
 
-print "\n3. Run 'cat brew.list | xargs brew install' to install brew packages."
+print("\n3. Run 'cat brew.list | xargs brew install' to install brew packages.")
 
-print "\n4. Run coqtail.sh to install Coq plugin for Vim"
+print("\n4. For enabling brew bash, run: 'sudo -s echo /usr/local/bin/bash >> /etc/shells', and then 'chsh -s /opt/homebrew/bin/bash'")
 
-print "Additionally, restart the terminal session for bash profile settings to apply, and run `chsh` to use `/bin/bash`."
+print("Additionally, restart the terminal session for bash profile settings to apply.")

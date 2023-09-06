@@ -17,11 +17,9 @@ This project contains various configuration files and development tools.
 
 brew.list
 ---------
-Use `brew leaves > brew.list` to generate this list with the latest packages.
+Use `brew leaves | sort > brew.list` to generate this list with the latest packages.
 Alternatively, run `cat brew.list | xargs brew install` to install them.
 
-For enabling brew bash, run: `sudo -s echo /usr/local/bin/bash >> /etc/shells`, and then `chsh -s /usr/local/bin/bash`.
-
-Scripts are used with Mac OS X v10.14.2.
+Scripts are used with macOS 13.5.1.
 
 Boro Sitnikovski
