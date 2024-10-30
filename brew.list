@@ -1,3 +1,6 @@
+bash-completion
+docker-compose
+ffmpeg
 git
 httpd
 jq
